@@ -1,6 +1,21 @@
 FROM python:3.9-slim
 
+# Depoları güncelle ve temel araçları yükle
 RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Chromium için ek depo ekle (Debian bookworm)
+RUN echo "deb http://deb.debian.org/debian bookworm main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian-security bookworm-security main contrib non-free" >> /etc/apt/sources.list
+RUN apt-get update
+
+# Sistem bağımlılıklarını ve Chromium'u yükle
+RUN apt-get install -y \
     wget \
     gnupg \
     libglib2.0-0 \
@@ -15,7 +30,7 @@ RUN apt-get update && apt-get install -y \
     libxrandr2 \
     libgbm1 \
     libpango-1.0-0 \
-    chromium-browser \
+    chromium \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
