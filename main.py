@@ -113,7 +113,7 @@ async def crawl_nutrition(food_name: str, language: str = "tr"):
     
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Hata: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/nutrition/{food_name}")
 async def get_nutrition(
