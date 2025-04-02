@@ -1,6 +1,5 @@
-FROM python:3.10-slim
+FROM python:3.13.2
 
-# Depoları güncelle ve temel araçları yükle
 RUN apt-get update && apt-get install -y \
     apt-transport-https \
     ca-certificates \
@@ -9,13 +8,11 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Chromium için ek depo ekle
 RUN echo "deb http://deb.debian.org/debian bookworm main contrib non-free" >> /etc/apt/sources.list
 RUN echo "deb http://deb.debian.org/debian-security bookworm-security main contrib non-free" >> /etc/apt/sources.list
 RUN apt-get update
 
-# Sistem bağımlılıklarını ve Chromium'u yükle
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
     libglib2.0-0 \
@@ -30,14 +27,18 @@ RUN apt-get install -y \
     libxrandr2 \
     libgbm1 \
     libpango-1.0-0 \
-    chromium \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
+
+ENV PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/playwright
 
 WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN mkdir -p $PLAYWRIGHT_BROWSERS_PATH && \
+    python -m playwright install chromium --with-deps
 
 COPY . .
 
