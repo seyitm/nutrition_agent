@@ -78,7 +78,7 @@ async def crawl_nutrition(food_name: str, language: str = "tr"):
         
         
         llm_strategy = LLMExtractionStrategy(
-            llm_config=LLMConfig(provider="gemini/gemini-1.5-pro", api_token=api_token),
+            llm_config=LLMConfig(provider="gemini/gemini-1.5-flash", api_token=api_token), # Changed model to gemini-1.5-flash
             schema=NutritionData.model_json_schema(),
             extraction_type="schema",
             instruction=instruction
