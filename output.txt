@@ -1,1 +1,1 @@
-{"calories":"Unknown","protein":"Unknown","sugar":"Unknown","carbohydrates":"Unknown","fat":"Unknown","serving_size":"Unknown","allergens":[],"vitamin_minerals":{},"error":false,"source_url":"https://en.wikipedia.org/wiki/Apple"}
+{"calories":"Unknown","protein":"Unknown","sugar":"Unknown","carbohydrates":"Unknown","fat":"Unknown","serving_size":"Unknown","allergens":[],"vitamin_minerals":null,"error":false,"source_url":"http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRoeUqD7lgiXavof_C8DW2QeI-BHIzGPLKRPCWinurLGGMBT7GSml0le6bQro8yWjAa"}
